@@ -2,11 +2,14 @@ require "sinatra"
 require "sinatra/reloader"
 
 get("/") do
-  "
-  <h1>Welcome to Rock-Paper-Scissors!</h1>
-  <p>Define some routes in app.rb</p>
-  "
+  
+erb(:homepage)
+
 end
+
+
+
+
 
 
 get("/rock") do
@@ -27,7 +30,31 @@ end
 end
 
 get("/paper") do
+  moves = ["rock", "paper", "scissors"]
+@comp_moves= moves.sample
+
+if @comp_moves=="rock"
+    @outcome="won"
+elsif @comp_moves=="paper"
+    @outcome="tied"
+else
+    @outcome="lost"
+end
+
+  erb(:paper)
 end
 
 get("/scissors") do
+  moves = ["rock", "paper", "scissors"]
+@comp_moves= moves.sample
+
+if @comp_moves=="rock"
+    @outcome="lost"
+elsif @comp_moves=="paper"
+    @outcome="won"
+else
+    @outcome="tied"
+end
+
+  erb(:scissors)
 end
